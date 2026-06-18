@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oferta Especial — Próstata Blindada</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://wiapy.com/sell/1.0.0/sell.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    :root {
+      --bg:       #08080A;
+      --surface:  #0E1420;
+      --surface-g:#0D1A0D;
+      --border:   #1E293B;
+      --border-g: #166534;
+      --green:    #4ADE80;
+      --green-dk: #16A34A;
+      --amber:    #FCD34D;
+      --red:      #F87171;
+      --text:     #F8FAFC;
+      --muted:    #64748B;
+      --secondary:#94A3B8;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      padding-bottom: 68px;
+    }
+
+    /* ── SLOT BAR ── */
+    .slot-wrap {
+      background: #060608;
+      border-bottom: 1px solid #0f172a;
+      padding: 5px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .slot-track {
+      flex: 1; height: 4px;
+      background: #1e293b;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .slot-fill {
+      height: 100%; width: 68%;
+      background: var(--green-dk);
+      border-radius: 99px;
+      animation: slotBreathe 3s ease-in-out infinite;
+    }
+    @keyframes slotBreathe {
+      0%,100% { opacity:1; } 50% { opacity:.55; }
+    }
+    .slot-text {
+      font-size: .62rem; font-weight: 700;
+      color: var(--muted); white-space: nowrap;
+      letter-spacing: .03em;
+    }
+    .slot-text b { color: var(--green); }
+
+    /* ── ALERT BAR ── */
+    .alert-bar {
+      background: #090c10;
+      border-bottom: 1px solid #1e293b;
+      padding: 10px 16px;
+    }
+    .alert-bar p {
+      max-width: 480px; margin: 0 auto;
+      font-size: .75rem; font-weight: 600;
+      color: var(--amber); text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ── ECG SIGNATURE ELEMENT ── */
+    .ecg-wrap {
+      overflow: hidden;
+      height: 32px;
+      position: relative;
+    }
+    .ecg-line {
+      animation: ecgScroll 3.6s linear infinite;
+    }
+    @keyframes ecgScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SECTIONS ── */
+    .page-wrap {
+      width: 100%; max-width: 460px;
+      margin: 0 auto;
+      padding: 28px 20px 20px;
+      display: flex; flex-direction: column;
+      gap: 28px;
+    }
+
+    /* ── HEADLINE ── */
+    .eyebrow {
+      display: inline-block;
+      background: rgba(74,222,128,.08);
+      border: 1px solid rgba(74,222,128,.2);
+      color: var(--green);
+      font-size: .65rem; font-weight: 800;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 99px;
+    }
+    h1 {
+      font-size: 1.6rem; font-weight: 900;
+      line-height: 1.2; letter-spacing: -.02em;
+      color: var(--text);
+    }
+    h1 em { font-style: normal; color: var(--green); }
+
+    .subhead {
+      font-size: .875rem; color: var(--secondary);
+      line-height: 1.6;
+    }
+    .subhead strong { color: var(--text); font-weight: 600; }
+
+    /* ── ANCHOR CTA ── */
+    .anchor-btn {
+      display: block; width: 100%;
+      background: transparent;
+      border: 1.5px solid rgba(74,222,128,.35);
+      color: var(--green);
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-size: .8rem; font-weight: 700;
+      cursor: pointer; text-align: center;
+      transition: background .2s, border-color .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .anchor-btn:active { background: rgba(74,222,128,.06); }
+
+    /* ── DIVIDER ── */
+    .div-line {
+      border: none; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ── BODY COPY ── */
+    .body-copy {
+      font-size: .875rem; color: var(--secondary);
+      line-height: 1.7;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .body-copy strong { color: var(--text); font-weight: 600; }
+
+    .alert-inline {
+      background: rgba(248,113,113,.06);
+      border: 1px solid rgba(248,113,113,.2);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .alert-inline p {
+      font-size: .78rem; color: #fca5a5;
+      line-height: 1.5; font-weight: 500;
+    }
+    .alert-inline p strong { color: #fff; }
+
+    /* ── BULLETS ── */
+    .section-label {
+      font-size: .65rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--muted);
+    }
+    .bullet-list { display: flex; flex-direction: column; gap: 10px; }
+    .bullet-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--green-dk);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex; gap: 12px; align-items: flex-start;
+    }
+    .bullet-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .bullet-title { font-size: .82rem; font-weight: 700; color: var(--text); }
+    .bullet-desc  { font-size: .74rem; color: var(--muted); margin-top: 2px; line-height: 1.5; }
+
+    /* ── TESTIMONIAL ── */
+    .testi-card {
+      background: var(--surface);
+      border: 1px solid #1e3a5f;
+      border-left: 2px solid #3B82F6;
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .testi-stars { color: #FBBF24; font-size: .8rem; letter-spacing: .05em; }
+    .testi-text  {
+      font-size: .8rem; color: var(--secondary);
+      line-height: 1.6; margin-top: 6px; font-style: italic;
+    }
+    .testi-name  { font-size: .7rem; color: var(--muted); font-weight: 600; margin-top: 8px; }
+
+    /* ── PRICE BOX ── */
+    .price-box {
+      background: var(--surface-g);
+      border: 1px solid var(--border-g);
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 10px;
+    }
+    .price-label {
+      font-size: .65rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .1em;
+      color: var(--muted);
+    }
+    .price-row {
+      display: flex; align-items: center;
+      justify-content: center; gap: 12px; flex-wrap: wrap;
+    }
+    .price-old {
+      font-size: 1rem; font-weight: 700;
+      color: var(--muted);
+      text-decoration: line-through;
+      text-decoration-color: #EF4444;
+      text-decoration-thickness: 2px;
+    }
+    .price-new {
+      font-size: 2.6rem; font-weight: 900;
+      color: var(--green);
+      letter-spacing: -.03em;
+      line-height: 1;
+    }
+    .saving-pill {
+      background: var(--green-dk);
+      color: #fff;
+      font-size: .65rem; font-weight: 800;
+      letter-spacing: .05em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 99px;
+    }
+    .price-note {
+      font-size: .68rem; color: var(--muted);
+      letter-spacing: .02em;
+    }
+    .price-timer {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .price-timer span { font-size: .7rem; color: var(--muted); }
+    #inline-timer {
+      font-size: .75rem; font-weight: 900;
+      color: var(--red);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: .06em;
+    }
+
+    /* ── CTA BUTTON ── */
+    .cta-btn {
+      display: block; width: 100%;
+      background: linear-gradient(160deg, #15803D 0%, #16A34A 60%, #22c55e 100%);
+      border: none; border-radius: 12px;
+      padding: 18px 16px;
+      color: #fff; font-weight: 900;
+      font-size: .95rem; line-height: 1.3;
+      text-align: center; cursor: pointer;
+      box-shadow: 0 0 0 0 rgba(74,222,128,.4), 0 6px 24px rgba(22,163,74,.35);
+      animation: ctaPulse 2s ease-in-out infinite;
+      transition: transform .15s ease;
+      -webkit-tap-highlight-color: transparent;
+      font-family: inherit;
+    }
+    .cta-btn:active { transform: scale(.97); }
+    @keyframes ctaPulse {
+      0%   { box-shadow: 0 0 0 0   rgba(74,222,128,.45), 0 6px 24px rgba(22,163,74,.35); }
+      50%  { box-shadow: 0 0 0 12px rgba(74,222,128,0),  0 6px 32px rgba(22,163,74,.5);  }
+      100% { box-shadow: 0 0 0 0   rgba(74,222,128,0),   0 6px 24px rgba(22,163,74,.35); }
+    }
+    .cta-sub {
+      display: block;
+      font-size: .75rem; font-weight: 500;
+      opacity: .85; margin-top: 3px;
+      text-transform: none; letter-spacing: 0;
+    }
+
+    /* ── TRUST ROW ── */
+    .trust-row {
+      display: flex; align-items: center;
+      justify-content: center; gap: 10px;
+      flex-wrap: wrap;
+      font-size: .67rem; color: var(--muted);
+    }
+    .trust-row span { white-space: nowrap; }
+    .trust-dot { color: #1e293b; }
+
+    /* ── DECLINE ── */
+    .decline-btn {
+      background: none; border: none; padding: 0;
+      font-family: inherit;
+      font-size: .68rem; color: #334155;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      transition: color .2s;
+      display: block; margin: 0 auto;
+      text-align: center;
+    }
+    .decline-btn:hover { color: var(--muted); }
+
+    /* ── STICKY TIMER ── */
+    .sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 50;
+      background: rgba(8,8,10,.95);
+      border-top: 1px solid #1e293b;
+      backdrop-filter: blur(12px);
+      padding: 10px 20px;
+      display: flex; align-items: center;
+      justify-content: center; gap: 12px;
+    }
+    .sticky-label { font-size: .68rem; color: var(--muted); font-weight: 600; white-space: nowrap; }
+    #sticky-timer {
+      font-size: 1rem; font-weight: 900;
+      color: var(--red);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: .08em;
+    }
+    .sticky-cta {
+      background: var(--green-dk);
+      border: none; border-radius: 8px;
+      padding: 7px 16px;
+      color: #fff; font-size: .7rem;
+      font-weight: 800; font-family: inherit;
+      letter-spacing: .03em; text-transform: uppercase;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      white-space: nowrap;
+    }
+    .sticky-bar.urgent #sticky-timer {
+      animation: timerBlink .55s ease-in-out infinite;
+    }
+    @keyframes timerBlink {
+      0%,100% { opacity:1; } 50% { opacity:.4; }
+    }
+
+    /* ── DECLINE SHEET ── */
+    .sheet-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.88);
+      z-index: 100;
+      align-items: flex-end; justify-content: center;
+    }
+    .sheet-overlay.open { display: flex; }
+    .sheet {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-radius: 18px 18px 0 0;
+      padding: 26px 20px 40px;
+      width: 100%; max-width: 480px;
+      animation: sheetUp .26s cubic-bezier(.34,1.4,.64,1) both;
+    }
+    @keyframes sheetUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+    .sheet h3 {
+      font-size: 1.05rem; font-weight: 900;
+      color: var(--text); margin-bottom: 8px;
+    }
+    .sheet p {
+      font-size: .82rem; color: var(--secondary);
+      line-height: 1.6; margin-bottom: 20px;
+    }
+    .sheet-refuse {
+      display: block; width: 100%;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px;
+      color: var(--muted); font-size: .75rem;
+      font-weight: 600; font-family: inherit;
+      cursor: pointer; text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ── EXPIRED OVERLAY ── */
+    #expired-screen {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.94);
+      z-index: 200;
+      align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    #expired-screen.open { display: flex; }
+    .expired-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 20px;
+      max-width: 340px; width: 100%;
+      text-align: center;
+    }
+    .expired-box h2 { font-size: 1.1rem; font-weight: 900; margin: 12px 0 8px; }
+    .expired-box p { font-size: .8rem; color: var(--secondary); line-height: 1.6; margin-bottom: 20px; }
+    .expired-box button {
+      display: block; width: 100%;
+      background: #1e293b; border: 1px solid var(--border);
+      border-radius: 10px; padding: 13px;
+      color: var(--muted); font-size: .78rem;
+      font-weight: 700; font-family: inherit; cursor: pointer;
+    }
+
+    /* ── RECIPE CATEGORY CARDS ── */
+    .recipes-intro {
+      font-size: .82rem; color: var(--secondary);
+      line-height: 1.6;
+    }
+    .recipes-intro strong { color: var(--text); }
+    .recipe-total {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(74,222,128,.07);
+      border: 1px solid rgba(74,222,128,.18);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: .78rem; color: var(--green);
+      font-weight: 700;
+    }
+    .recipe-total span { font-size: 1.5rem; font-weight: 900; line-height: 1; }
+    .recipe-grid { display: flex; flex-direction: column; gap: 10px; }
+    .recipe-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .recipe-card-header {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 8px;
+    }
+    .recipe-card-left {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .recipe-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .recipe-name {
+      font-size: .85rem; font-weight: 800;
+      color: var(--text); line-height: 1.3;
+    }
+    .recipe-count {
+      flex-shrink: 0;
+      background: var(--green-dk);
+      color: #fff;
+      font-size: .62rem; font-weight: 900;
+      letter-spacing: .04em;
+      padding: 3px 9px; border-radius: 99px;
+      white-space: nowrap;
+    }
+    .recipe-desc {
+      font-size: .74rem; color: var(--muted);
+      line-height: 1.55; padding-left: 36px;
+    }
+    .recipe-examples {
+      padding-left: 36px;
+      display: flex; flex-wrap: wrap; gap: 5px;
+      margin-top: 2px;
+    }
+    .recipe-tag {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      font-size: .65rem; color: #475569;
+      padding: 3px 8px; font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slot-fill, .ecg-line, .cta-btn, .sticky-bar.urgent #sticky-timer { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slot bar -->
+  <div class="slot-wrap">
+    <div class="slot-track"><div class="slot-fill"></div></div>
+    <span class="slot-text"><b>31</b> de 40 acessos liberados hoje</span>
+  </div>
+
+  <!-- Alert bar -->
+  <header class="alert-bar">
+    <p>⚠️ <strong style="color:#fff;">Não feche esta página.</strong> Seu acesso ao P-Alpha já foi aprovado e enviado.</p>
+  </header>
+
+  <!-- Page content -->
+  <main class="page-wrap">
+
+    <!-- Headline block -->
+    <section style="display:flex;flex-direction:column;gap:14px;">
+      <span class="eyebrow">Oferta exclusiva · apenas agora</span>
+
+      <h1>Espere — você quer proteger sua próstata e <em>viver mais e melhor?</em></h1>
+
+      <p class="subhead">
+        Adicione o <strong>Próstata Blindada: Manual da Longevidade Masculina</strong> ao seu acesso agora — por um valor que só existe nesta página.
+      </p>
+
+      <button class="anchor-btn" onclick="document.getElementById('cta-section').scrollIntoView({behavior:'smooth'})">
+        Ver a oferta ↓
+      </button>
+    </section>
+
+    <!-- ECG divider — signature element -->
+    <div class="ecg-wrap" aria-hidden="true">
+      <svg class="ecg-line" viewBox="0 0 800 32" xmlns="http://www.w3.org/2000/svg" height="32" style="width:200%;display:block;">
+        <!-- repeat twice for seamless scroll -->
+        <polyline
+          points="
+            0,16 60,16 70,16 75,4 80,28 85,2 90,30 95,16 110,16
+            160,16 170,16 175,4 180,28 185,2 190,30 195,16 210,16
+            260,16 270,16 275,4 280,28 285,2 290,30 295,16 310,16
+            360,16 370,16 375,4 380,28 385,2 390,30 395,16 400,16
+            400,16 460,16 470,16 475,4 480,28 485,2 490,30 495,16 510,16
+            560,16 570,16 575,4 580,28 585,2 590,30 595,16 610,16
+            660,16 670,16 675,4 680,28 685,2 690,30 695,16 710,16
+            760,16 770,16 775,4 780,28 785,2 790,30 795,16 800,16
+          "
+          fill="none"
+          stroke="#166534"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          opacity="0.6"
+        />
+      </svg>
+    </div>
+
+    <!-- Body copy -->
+    <section class="body-copy">
+      <p>
+        Aos 35, 45 ou 55 anos, a próstata começa a dar sinais silenciosos — e a maioria dos homens ignora até ser tarde demais. <strong>Levantar de madrugada para urinar, fluxo fraco, sensação de esvaziamento incompleto.</strong> Não é só desconforto. É o seu corpo pedindo atenção.
+      </p>
+      <p>
+        O <strong>Próstata Blindada</strong> foi desenvolvido como um manual direto ao ponto: alimentos, rotinas e ajustes de estilo de vida comprovados que <strong>reduzem inflamação, regulam o PSA e aumentam a testosterona naturalmente</strong> — sem remédios, sem consultas caras, sem complicação.
+      </p>
+
+      <div class="alert-inline">
+        <span style="color:#f87171;flex-shrink:0;margin-top:1px;">🔥</span>
+        <p>Se você sair agora, <strong>o valor volta para R$ 97,00</strong> e esta condição some para sempre.</p>
+      </div>
+    </section>
+
+    <hr class="div-line" />
+
+    <!-- Benefits -->
+    <section style="display:flex;flex-direction:column;gap:12px;">
+      <span class="section-label">O que você recebe — 37 receitas organizadas por resultado</span>
+
+      <p class="recipes-intro">
+        Não é uma lista aleatória de alimentos. Cada receita foi selecionada por um efeito específico na saúde masculina — e agrupada para você saber <strong>exatamente o que usar e quando</strong>.
+      </p>
+
+      <!-- Total badge -->
+      <div class="recipe-total">
+        <span>37</span>
+        receitas práticas com ingredientes de mercado comum
+      </div>
+
+      <!-- Category cards -->
+      <div class="recipe-grid">
+
+        <!-- 1 -->
+        <div class="recipe-card">
+          <div class="recipe-card-header">
+            <div class="recipe-card-left">
+              <span class="recipe-icon">🛡️</span>
+              <p class="recipe-name">Anti-inflamação da próstata</p>
+            </div>
+            <span class="recipe-count">8 receitas</span>
+          </div>
+          <p class="recipe-desc">
+            Alimentos e combinações que reduzem o inchaço da glândula e aliviam a pressão na bexiga — resultados sentidos já na primeira semana.
+          </p>
+          <div class="recipe-examples">
+            <span class="recipe-tag">suco de romã</span>
+            <span class="recipe-tag">chá de saw palmetto</span>
+            <span class="recipe-tag">shot de açafrão</span>
+            <span class="recipe-tag">+5 receitas</span>
+          </div>
+        </div>
+
+        <!-- 2 -->
+        <div class="recipe-card">
+          <div class="recipe-card-header">
+            <div class="recipe-card-left">
+              <span class="recipe-icon">🌙</span>
+              <p class="recipe-name">Sono sem interrupção noturna</p>
+            </div>
+            <span class="recipe-count">7 receitas</span>
+          </div>
+          <p class="recipe-desc">
+            Receitas para consumir à tarde e à noite que regulam a produção de urina, reduzem a urgência e eliminam as idas ao banheiro de madrugada.
+          </p>
+          <div class="recipe-examples">
+            <span class="recipe-tag">chá de abóbora</span>
+            <span class="recipe-tag">smoothie de magnésio</span>
+            <span class="recipe-tag">caldo anti-diurético</span>
+            <span class="recipe-tag">+4 receitas</span>
+          </div>
+        </div>
+
+        <!-- 3 -->
+        <div class="recipe-card">
+          <div class="recipe-card-header">
+            <div class="recipe-card-left">
+              <span class="recipe-icon">⚡</span>
+              <p class="recipe-name">Testosterona e libido naturais</p>
+            </div>
+            <span class="recipe-count">8 receitas</span>
+          </div>
+          <p class="recipe-desc">
+            Combinações que estimulam a produção de testosterona livre, potencializando diretamente os resultados do seu treino de Kegel do P-Alpha.
+          </p>
+          <div class="recipe-examples">
+            <span class="recipe-tag">shot de zinco e mel</span>
+            <span class="recipe-tag">omelete de ostras</span>
+            <span class="recipe-tag">vitamina de maca</span>
+            <span class="recipe-tag">+5 receitas</span>
+          </div>
+        </div>
+
+        <!-- 4 -->
+        <div class="recipe-card">
+          <div class="recipe-card-header">
+            <div class="recipe-card-left">
+              <span class="recipe-icon">🩸</span>
+              <p class="recipe-name">Fluxo sanguíneo e ereção</p>
+            </div>
+            <span class="recipe-count">7 receitas</span>
+          </div>
+          <p class="recipe-desc">
+            Receitas com vasodilatadores naturais que aumentam a circulação pélvica — complemento direto ao protocolo de fortalecimento do P-Alpha.
+          </p>
+          <div class="recipe-examples">
+            <span class="recipe-tag">suco de beterraba e gengibre</span>
+            <span class="recipe-tag">chá de ginkgo</span>
+            <span class="recipe-tag">shot de L-arginina</span>
+            <span class="recipe-tag">+4 receitas</span>
+          </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="recipe-card">
+          <div class="recipe-card-header">
+            <div class="recipe-card-left">
+              <span class="recipe-icon">🔋</span>
+              <p class="recipe-name">Energia e longevidade diária</p>
+            </div>
+            <span class="recipe-count">7 receitas</span>
+          </div>
+          <p class="recipe-desc">
+            Refeições e bebidas para sustentar energia ao longo do dia, reduzir o cortisol e proteger a saúde hormonal masculina depois dos 35.
+          </p>
+          <div class="recipe-examples">
+            <span class="recipe-tag">café com manteiga ghee</span>
+            <span class="recipe-tag">bowl antioxidante</span>
+            <span class="recipe-tag">chá adaptogênico</span>
+            <span class="recipe-tag">+4 receitas</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="div-line" />
+
+    <!-- Testimonial -->
+    <section style="display:flex;flex-direction:column;gap:12px;">
+      <span class="section-label">Quem já aplicou</span>
+      <div class="testi-card">
+        <p class="testi-stars">★★★★★</p>
+        <p class="testi-text">
+          "Tinha vergonha de falar sobre isso. Levantava 3 vezes por noite. Em duas semanas seguindo o manual, caiu pra uma — e às vezes nenhuma. Junto com o P-Alpha, foi a melhor decisão que tomei."
+        </p>
+        <p class="testi-name">— Carlos M., 52 anos · Campinas/SP · compra verificada</p>
+      </div>
+    </section>
+
+    <hr class="div-line" />
+
+    <!-- Price + CTA -->
+    <section id="cta-section" style="display:flex;flex-direction:column;gap:14px;">
+
+      <div class="price-box">
+        <span class="price-label">Condição exclusiva desta página</span>
+        <div class="price-row">
+          <span class="price-old">R$ 97,00</span>
+          <span class="price-new">R$ 29,90</span>
+        </div>
+        <span class="saving-pill">Você economiza R$ 67,10 agora</span>
+        <p class="price-note">Pagamento único · Acesso imediato · 1 clique</p>
+        <div class="price-timer">
+          <span>⏱ Oferta expira em:</span>
+          <span id="inline-timer">14:59</span>
+        </div>
+      </div>
+
+      <div id="wiapy_upsell"></div>
+      <script>
+        initWiapyUpsell({
+          linkUrl: "https://pay.wiapy.com/checkout/6a3378f9bc58d193b94de9e6",
+          linkText: "SIM, EU ACEITO ESSA OFERTA",
+          styles: {
+            backgroundColor: "#00d769",
+            hoverBackgroundColor: "#00b85a",
+            fontSize: "17px",
+            borderRadius: "10px"
+          },
+          refusalLinkUrl: "https://wiapy.com/login",
+          refusalLinkText: "Recusar está oferta",
+          refusalLinkColor: "#000000"
+        });
+      </script>
+
+    </section>
+
+  </main>
+
+  <!-- Sticky timer bar -->
+  <div class="sticky-bar" id="sticky-bar">
+    <span class="sticky-label">⏱ Oferta expira em:</span>
+    <span id="sticky-timer">14:59</span>
+    <button
+      class="sticky-cta"
+      onclick="document.getElementById('cta-section').scrollIntoView({behavior:'smooth'})"
+    >Garantir →</button>
+  </div>
+
+  <!-- Decline bottom sheet -->
+  <div class="sheet-overlay" id="sheet-overlay" role="dialog" aria-modal="true">
+    <div class="sheet">
+      <h3>Tem certeza que quer recusar?</h3>
+      <p>
+        Você está abrindo mão de proteger sua próstata e amplificar seus resultados do P-Alpha por apenas
+        <strong style="color:#4ADE80;">R$ 29,90</strong>.
+        Depois que sair desta página, esse valor não volta.
+      </p>
+      <button
+        class="cta-btn"
+        style="font-size:.85rem;padding:15px 16px;"
+        onclick="closeSheet(); window.location.href='https://pay.wiapy.com/checkout/6a3378f9bc58d193b94de9e6';"
+      >
+        Quero sim — adicionar por R$ 29,90
+      </button>
+      <button
+        class="sheet-refuse"
+        onclick="window.location.href='#recusa'"
+      >Confirmar recusa — não quero o bônus</button>
+    </div>
+  </div>
+
+  <!-- Expired overlay -->
+  <div id="expired-screen" role="alertdialog" aria-modal="true">
+    <div class="expired-box">
+      <p style="font-size:2rem;">⏰</p>
+      <h2>Oferta expirada</h2>
+      <p>O tempo desta condição especial encerrou. O valor voltou para <strong style="color:#F8FAFC;">R$ 97,00</strong>.</p>
+      <button onclick="window.location.href='#expirado'">Continuar sem o bônus</button>
+    </div>
+  </div>
+
+  <script>
+    /* ── TIMER ── */
+    (function () {
+      const KEY = 'prostata_v1_expiry';
+      const DURATION = 15 * 60 * 1000;
+
+      let expiry = parseInt(sessionStorage.getItem(KEY), 10);
+      if (!expiry || isNaN(expiry)) {
+        expiry = Date.now() + DURATION;
+        sessionStorage.setItem(KEY, String(expiry));
+      }
+
+      const inlineEl  = document.getElementById('inline-timer');
+      const stickyEl  = document.getElementById('sticky-timer');
+      const barEl     = document.getElementById('sticky-bar');
+      const expiredEl = document.getElementById('expired-screen');
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function tick() {
+        const rem = Math.max(0, expiry - Date.now());
+        const m = Math.floor(rem / 60000);
+        const s = Math.floor((rem % 60000) / 1000);
+        const str = pad(m) + ':' + pad(s);
+
+        inlineEl.textContent = str;
+        stickyEl.textContent = str;
+
+        if (rem <= 60000 && rem > 0) barEl.classList.add('urgent');
+
+        if (rem <= 0) {
+          clearInterval(iv);
+          inlineEl.textContent = stickyEl.textContent = '00:00';
+          expiredEl.classList.add('open');
+          document.querySelectorAll('.cta-btn, .anchor-btn, .sticky-cta').forEach(el => {
+            el.style.opacity = '.3';
+            el.style.pointerEvents = 'none';
+          });
+        }
+      }
+
+      const iv = setInterval(tick, 1000);
+      tick();
+    })();
+
+    /* ── DECLINE SHEET ── */
+    document.getElementById('decline-trigger').addEventListener('click', function () {
+      document.getElementById('sheet-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+
+    function closeSheet() {
+      document.getElementById('sheet-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('sheet-overlay').addEventListener('click', function (e) {
+      if (e.target === this) closeSheet();
+    });
+  </script>
+
+</body>
+</html>
